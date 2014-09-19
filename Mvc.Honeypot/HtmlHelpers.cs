@@ -14,6 +14,21 @@ namespace Mvc.Honeypot
 {
     public static class HtmlHelpers
     {
+        #region Enumerations
+
+        public enum InputType
+        {
+            Text,
+            Email,
+            Tel,
+            Search,
+            Hidden
+        }
+
+        #endregion
+
+        #region Methods
+
         /// <summary>
         /// Calculates MD5 HASH
         /// </summary>
@@ -34,6 +49,8 @@ namespace Mvc.Honeypot
             return sbHashedName.ToString();
         }
 
+        #endregion 
+
         /// <summary>
         /// Renders out field with honeypot security check enabled
         /// </summary>
@@ -42,27 +59,33 @@ namespace Mvc.Honeypot
         /// <param name="value">Value of the field</param>
         /// <param name="css">CSS class to be applied to input field</param>
         /// <returns>Returns render out MvcHtmlString for displaying on the View</returns>
-        public static MvcHtmlString HoneyPotField(this HtmlHelper helper, string name, object value, string css = null)
+        public static MvcHtmlString HoneyPotField(this HtmlHelper helper, string name, object value, string inputCss = null, InputType fieldType=InputType.Text,string honeypotCss = null, InputType honeypotType=InputType.Hidden)
         {
             StringBuilder sbControlHtml = new StringBuilder();
             using (StringWriter stringWriter = new StringWriter())
             {
                 using (HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter))
                 {
-                    HtmlInputText hashedField = new HtmlInputText();
+                    HtmlInputText hashedField = new HtmlInputText(fieldType.ToString().ToLower());
                     string hashedName = GetHashedPropertyName(name);
                     hashedField.Value = value != null ? value.ToString() : string.Empty;
                     hashedField.ID = hashedName;
                     hashedField.Name = hashedName;
-                    if (!string.IsNullOrWhiteSpace(css))
+                    if (!string.IsNullOrWhiteSpace(inputCss))
                     {
-                        hashedField.Attributes["class"] = css;
+                        hashedField.Attributes["class"] = inputCss;
                     }
                     hashedField.RenderControl(htmlWriter);
-                    HtmlInputHidden hiddenField = new HtmlInputHidden();
+
+
+                    HtmlInputText hiddenField = new HtmlInputText(honeypotType.ToString().ToLower());
                     hiddenField.Value = string.Empty;
                     hiddenField.ID = name;
                     hiddenField.Name = name;
+                    if (!string.IsNullOrWhiteSpace(inputCss))
+                    {
+                        hiddenField.Attributes["class"] = honeypotCss;
+                    }
                     hiddenField.RenderControl(htmlWriter);
                     sbControlHtml.Append(stringWriter.ToString());
                 }
