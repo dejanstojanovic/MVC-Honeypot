@@ -82,7 +82,7 @@ namespace Mvc.Honeypot
                     hiddenField.Value = string.Empty;
                     hiddenField.ID = name;
                     hiddenField.Name = name;
-                    if (!string.IsNullOrWhiteSpace(inputCss))
+                    if (!string.IsNullOrWhiteSpace(honeypotCss))
                     {
                         hiddenField.Attributes["class"] = honeypotCss;
                     }
