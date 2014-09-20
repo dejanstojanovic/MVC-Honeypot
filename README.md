@@ -61,17 +61,22 @@ public ActionResult PostForm(FormModel model)
 ###How to know if trap was triggered
 In your post form action you should do a check similar to the following
 ```cs
-if (ModelState.IsValid && Request.HasHoneypotTrapped())
+[HttpPost]
+[HoneypotFilter("Email")]
+public ActionResult PostForm(FormModel model)
 {
-    //Pretend you sent something
-}
-else if (ModelState.IsValid)
-{
-    //Regular user, valid fields
-}
-else
-{
-    //Regular user, invalid fields
+    if (ModelState.IsValid && Request.HasHoneypotTrapped())
+    {
+        //Pretend you sent something
+    }
+    else if (ModelState.IsValid)
+    {
+        //Regular user, valid fields
+    }
+    else
+    {
+        //Regular user, invalid fields
+    }
 }
 ```
 ###What to do whan you detect that honeypot is triggered
