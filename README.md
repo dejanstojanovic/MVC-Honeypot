@@ -1,7 +1,7 @@
 MVC-Honeypot
 ============
 
-Honeypot ati bot mechanism implementation in ASP.NET MVC
+Honeypot anti bot mechanism implementation in ASP.NET MVC
 
 ###What does it do
 This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to enter weird letter and numbers. 
@@ -74,3 +74,7 @@ else
     //Regular user, invalid fields
 }
 ```
+###What to do whan you detect that honeypot is triggered
+Usually when something is posted you show some thank you message and do something with posted data. In case of bot detection with honeypot you should not return any message different than normal post in your action. This will keep deceiving bot that data is successfully sent.
+
+The only difference is that you will treat posed data differently than normal, ignore the data, log it somewhere, or mark as a bot post when storing.
