@@ -1,7 +1,7 @@
 MVC-Honeypot
 ============
 
-Honeypot implementation in ASP.NET MVC
+Honeypot ati bot mechanism implementation in ASP.NET MVC
 
 ###What does it do
 This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to enter weird letter and numbers. 
