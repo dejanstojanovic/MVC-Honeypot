@@ -4,9 +4,11 @@ MVC-Honeypot
 Honeypot implementation in ASP.NET MVC
 
 ###What does it do
-This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to eneter weird letter and numbers. 
-In short, it more elegant and user frendly approach in detecting bot form posts. 
-It is based on masking the real field fith field that has some illogical name. When form is posted illogical named field holds actual data, and meaningfull named field is a trap field. If meniningfull named field value is set, that is proof that bot has filled out the form (this field should be not visible on the page, so that only bots can find it inspecting docuemnt structure)
+This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to enter weird letter and numbers. 
+
+In short, it more elegant and user friendly approach in detecting bot form posts. It is based on masking the real field with field that has some illogical name. 
+
+When form is posted illogical named field holds actual data, and meaningful named field is a trap field. If meaningful named field value is set, that is proof that bot has filled out the form (this field should be not visible on the page, so that only bots can find it inspecting document structure)
 
 ###How does it work
 The solution contains of three elements:
