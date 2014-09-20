@@ -67,7 +67,7 @@ public ActionResult PostForm(FormModel model)
 {
     if (ModelState.IsValid && Request.HasHoneypotTrapped())
     {
-        //Pretend you sent something
+        //Honeypot trap triggered, possible bot
     }
     else if (ModelState.IsValid)
     {
