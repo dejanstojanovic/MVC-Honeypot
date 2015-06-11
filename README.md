@@ -22,6 +22,10 @@ Another option is to install it with NuGet package manager.
 
 [![ScreenShot](http://dejanstojanovic.net/media/23565/nuget-small.png)](https://www.nuget.org/packages/Mvc.Honeypot/)
 
+```
+PM> Install-Package Mvc.Honeypot
+```
+
 There are few staps you need to to do in order to enable honeypot trap on your form page.
 * Add reference to Mvc.Hoheypot
 * Add hobeypot field for the form field which will be used for the trap (usually it's an email field)
