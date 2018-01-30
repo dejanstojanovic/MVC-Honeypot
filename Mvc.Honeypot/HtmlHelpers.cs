@@ -92,6 +92,44 @@ namespace Mvc.Honeypot
             }
             return new MvcHtmlString(sbControlHtml.ToString());
         }
+        
+        public static MvcHtmlString HoneyPotTextArea(this HtmlHelper helper, string name, object value, int cols, int rows, string inputCss = null, string honeypotCss = null)
+        {
+            StringBuilder sbControlHtml = new StringBuilder();
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                using (HtmlTextWriter htmlWriter = new HtmlTextWriter(stringWriter))
+                {
+                    HtmlTextArea hashedField = new HtmlTextArea();
+                    string hashedName = GetHashedPropertyName(name);
+                    hashedField.Value = value != null ? value.ToString() : string.Empty;
+                    hashedField.ID = hashedName;
+                    hashedField.Name = hashedName;
+                    hashedField.Cols = cols;
+                    hashedField.Rows = rows;
+                    if (!string.IsNullOrWhiteSpace(inputCss))
+                    {
+                        hashedField.Attributes["class"] = inputCss;
+                    }
+                    hashedField.RenderControl(htmlWriter);
+
+
+                    HtmlTextArea hiddenField = new HtmlTextArea();
+                    hiddenField.Value = string.Empty;
+                    hiddenField.ID = name;
+                    hiddenField.Name = name;
+                    hiddenField.Rows = rows;
+                    hiddenField.Cols = cols;
+                    if (!string.IsNullOrWhiteSpace(honeypotCss))
+                    {
+                        hiddenField.Attributes["class"] = honeypotCss;
+                    }
+                    hiddenField.RenderControl(htmlWriter);
+                    sbControlHtml.Append(stringWriter.ToString());
+                }
+            }
+            return new MvcHtmlString(sbControlHtml.ToString());
+        }
 
     }
 }
