@@ -2,6 +2,7 @@ MVC-Honeypot
 ============
 
 Honeypot anti bot mechanism implementation in ASP.NET MVC
+https://dejanstojanovic.net/aspnet/2014/september/honeypot-implementation-in-mvc/
 
 ### What does it do
 This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to enter weird letter and numbers. 
