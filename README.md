@@ -7,9 +7,9 @@ https://dejanstojanovic.net/aspnet/2014/september/honeypot-implementation-in-mvc
 ### What does it do
 This mechanism allows you to detect bot posts from forms on website without using CAPTCHA and bother visitors to enter weird letter and numbers. 
 
-In short, it more elegant and user friendly approach in detecting bot form posts. It is based on masking the real field with field that has some illogical name. 
+In short, it is more elegant and user friendly approach in detecting bot form posts. It is based on masking the real field with field that has some illogical name. 
 
-When form is posted illogical named field holds actual data, and meaningful named field is a trap field. If meaningful named field value is set, that is proof that bot has filled out the form (this field should be not visible on the page, so that only bots can find it inspecting document structure)
+When the form is posted the illogicaly named field holds actual data, and the meaningful named field is a trap field. If the meaningful named field value is set, that is proof that a bot has filled out the form (this field should not be visible on the page, so that only bots can find it inspecting document structure)
 
 ### How does it work
 The solution contains of three elements:
@@ -28,17 +28,17 @@ PM> Install-Package Mvc.Honeypot
 ```
 
 There are few staps you need to to do in order to enable honeypot trap on your form page.
-* Add reference to Mvc.Hoheypot
+* Add reference to Mvc.Honeypot
 * Add hobeypot field for the form field which will be used for the trap (usually it's an email field)
 ```cs
 @Html.HoneyPotField("Email", Model.Email)
 ```
-By default, helper will generate text field for user and hidden field for bot. 
+By default, helper will generate a text field for user and hidden field for bot. 
 ```html
 <input name="6D9A89AAA95B1B3BFD6C7C5A6D5535FF" type="text" id="6D9A89AAA95B1B3BFD6C7C5A6D5535FF" />
 <input name="Email" type="hidden" id="Email" />
 ```
-As bots are getting smarter and smarter they can start checking input type of the field. Helper enables you to change input types of both value field and honey pot field.
+As bots are getting smarter and smarter they can start checking input type of the field. The helper enables you to change input types of both value field and honey pot field.
 ```cs
 <style type="text/css">
     .masked
